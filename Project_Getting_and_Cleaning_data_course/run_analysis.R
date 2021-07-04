@@ -35,7 +35,7 @@
 
 #STEP 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 
-    mean_standar <- merge_train_test[,grep("(activityID)|(subjectID)|(.?[Mm]ean.?)|(mean..)|(std..)|(.?StandardDeviation.?)",names(merge_train_test))]
+    mean_standar <- merge_train_test[,grep("(activityID)|(subjectID)|(.?[Mm]ean.?.?)|(.?std.?.?)|(.?StandardDeviation.?)",names(merge_train_test))]
 
 #STEP 3: Uses descriptive activity names to name the activities in the data set
 
@@ -44,7 +44,23 @@
 
 #STEP 4: Appropriately labels the data set with descriptive variable names
 
-    #done in lines 23,24,26,27,28
+    #done in lines 23,24,26,27,28 and:
+    
+    names(setWithActivityNames)<-gsub("Acc", "Accelerationr", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("Gyro", "Gyroscope", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("BodyBody", "Body", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("Mag", "Magnitude", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("^t", "Time", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("^f", "Frequency", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("tBody", "TimeBody", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("-mean()", "Mean", names(setWithActivityNames), ignore.case = TRUE)
+    names(setWithActivityNames)<-gsub("-std()", "STD", names(setWithActivityNames), ignore.case = TRUE)
+    names(setWithActivityNames)<-gsub("-freq()", "Frequency", names(setWithActivityNames), ignore.case = TRUE)
+    names(setWithActivityNames)<-gsub("angle", "Angle", names(setWithActivityNames))
+    names(setWithActivityNames)<-gsub("gravity", "Gravity", names(setWithActivityNames))
+    
+    
+    
 
 #STEP 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
     
