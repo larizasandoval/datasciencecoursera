@@ -35,7 +35,7 @@
 
 #STEP 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 
-    mean_standar <- merge_train_test[,grep("(activityID)|(subjectID)|(mean..)|(std..)",names(merge_train_test))]
+    mean_standar <- merge_train_test[,grep("(activityID)|(subjectID)|(.?[Mm]ean.?)|(mean..)|(std..)|(.?StandardDeviation.?)",names(merge_train_test))]
 
 #STEP 3: Uses descriptive activity names to name the activities in the data set
 
